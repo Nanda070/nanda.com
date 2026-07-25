@@ -1,12 +1,12 @@
 export const site = {
   name: 'Nanda',
-  headline: 'Разработка, боты и сервисы',
-  tagline: 'Discord, веб и всё, что помогает сообществам жить.',
+  headline: 'Сайты, боты и сервисы',
+  tagline: 'Разработка сайтов, Discord-боты и сервисы для сообществ.',
   about:
-    'Занимаюсь Discord-ботами, сервисами и небольшими продуктами вокруг коммьюнити. Среди прочего — Cheterin Group и связанные проекты. Участник nullsec.',
+    'Делаю сайты, Discord-ботов и небольшие сервисы вокруг коммьюнити. Среди прочего — Cheterin Group и связанные проекты. Участник nullsec.',
   githubUser: 'Nanda070',
   avatarUrl: 'https://avatars.githubusercontent.com/u/135698347?v=4',
-  facts: ['GitHub', 'Discord', 'Riot'],
+  facts: ['Сайты', 'Discord', 'GitHub'],
   nullsec: {
     label: 'nullsec',
     logo: 'images/nullsec.png',
@@ -19,10 +19,24 @@ export type LinkItem = {
   handle: string;
   href?: string;
   copyValue?: string;
-  group: 'social' | 'games';
+  group: 'contact' | 'social' | 'games';
 };
 
 export const links: LinkItem[] = [
+  {
+    id: 'email',
+    label: 'Почта',
+    handle: 'adnan.huseynli1@gmail.com',
+    href: 'mailto:adnan.huseynli1@gmail.com',
+    group: 'contact',
+  },
+  {
+    id: 'phone',
+    label: 'Телефон',
+    handle: '+41077-259-9608',
+    href: 'tel:+410772599608',
+    group: 'contact',
+  },
   {
     id: 'telegram',
     label: 'Telegram',

@@ -28,10 +28,17 @@ body {
 }
 
 .hero-plane {
+  background-color: #3a0a14;
   background-image:
-    radial-gradient(80% 60% at 70% 18%, rgba(196, 60, 78, 0.22), transparent 55%),
-    radial-gradient(55% 45% at 12% 85%, rgba(20, 4, 10, 0.45), transparent 52%),
-    linear-gradient(165deg, var(--color-hero-from) 0%, var(--color-hero-to) 100%);
+    radial-gradient(ellipse 90% 70% at 72% 12%, rgba(196, 60, 78, 0.28), transparent 58%),
+    radial-gradient(ellipse 60% 50% at 8% 88%, rgba(20, 4, 10, 0.55), transparent 55%),
+    linear-gradient(
+      165deg,
+      #6a1224 0%,
+      #5c0f1e 28%,
+      #4a0c18 58%,
+      #3a0a14 100%
+    );
 }
 
 @keyframes fade-up {
