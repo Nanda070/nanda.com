@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0b0e14;
+  --color-surface: #12151e;
+  --color-border: #232838;
+  --color-hero-from: #5c0f1e;
+  --color-hero-to: #3a0a14;
+  --color-accent: #c43c4e;
+  --color-ink: #3a0a14;
+  --color-fg: #e8eaf0;
+  --color-muted: rgba(232, 234, 240, 0.62);
+  --color-muted-strong: rgba(232, 234, 240, 0.85);
+  --font-display: "Syne", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Manrope", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  color: var(--color-fg);
+  background-color: var(--color-bg);
+}
+
+.hero-plane {
+  background-image:
+    radial-gradient(80% 60% at 70% 18%, rgba(196, 60, 78, 0.22), transparent 55%),
+    radial-gradient(55% 45% at 12% 85%, rgba(20, 4, 10, 0.45), transparent 52%),
+    linear-gradient(165deg, var(--color-hero-from) 0%, var(--color-hero-to) 100%);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.anim-in {
+  animation: fade-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.anim-in-d1 {
+  animation: fade-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+
+.anim-in-d2 {
+  animation: fade-up 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--color-ink);
+  padding: 0.65rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.35);
+  transition: background 0.2s ease;
+}
+
+.btn-primary:hover {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s ease;
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.link-soft {
+  color: var(--color-muted-strong);
+  transition: color 0.2s ease;
+}
+
+.link-soft:hover {
+  color: #fff;
+}
+
+.row-hover {
+  transition: background-color 0.2s ease;
+}
+
+.row-hover:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.link-tile {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-surface);
+  padding: 1rem 1.1rem;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.link-tile:hover {
+  border-color: rgba(196, 60, 78, 0.45);
+  background: rgba(196, 60, 78, 0.06);
+}
+
+.link-tile-icon {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(232, 234, 240, 0.88);
+}
+
+.link-tile:hover .link-tile-icon {
+  background: rgba(196, 60, 78, 0.15);
+  color: #fff;
+}
+
+.link-tile-arrow {
+  color: rgba(232, 234, 240, 0.28);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.link-tile:hover .link-tile-arrow {
+  color: rgba(232, 234, 240, 0.7);
+  transform: translate(1px, -1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-in,
+  .anim-in-d1,
+  .anim-in-d2 {
+    animation: none;
+  }
+}

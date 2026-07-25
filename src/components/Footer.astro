@@ -1,0 +1,34 @@
+---
+import { site } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-border px-4 py-10 sm:px-6">
+  <div
+    class="mx-auto flex max-w-6xl flex-col gap-4 text-sm text-muted sm:flex-row sm:items-center sm:justify-between"
+  >
+    <p>
+      <span class="font-display font-semibold text-fg">{site.name}</span>
+      <span class="mx-2 text-border">·</span>
+      © {year}
+    </p>
+    <div class="flex gap-5">
+      <a
+        href={`https://github.com/${site.githubUser}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="link-soft">GitHub</a
+      >
+      <a
+        href="https://discord.gg/cheterin"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="link-soft">Discord</a
+      >
+      <a href="https://t.me/nanda070" target="_blank" rel="noopener noreferrer" class="link-soft"
+        >Telegram</a
+      >
+    </div>
+  </div>
+</footer>
