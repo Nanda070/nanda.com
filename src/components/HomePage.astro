@@ -1,0 +1,48 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Featured from '../components/Featured.astro';
+import GithubRepos from '../components/GithubRepos.astro';
+import Presence from '../components/Presence.astro';
+import Footer from '../components/Footer.astro';
+import { getSite, repoOverrides, githubDisplayLimit, siteMeta } from '../data/site';
+import { getDisplayRepos } from '../lib/github';
+import type { Locale } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const site = getSite(locale);
+
+const { repos, total } = await getDisplayRepos({
+  username: siteMeta.githubUser,
+  overrides: repoOverrides[locale],
+  limit: githubDisplayLimit,
+  fallbackDescription:
+    locale === 'ru' ? 'Репозиторий на GitHub.' : 'Repository on GitHub.',
+});
+
+const title = `${site.name} — ${site.headline}`;
+const description = `${site.name}. ${site.tagline}`;
+---
+
+<Layout locale={locale} title={title} description={description}>
+  <Nav locale={locale} />
+  <main>
+    <Hero locale={locale} />
+    <About locale={locale} />
+    <Featured locale={locale} />
+    <GithubRepos
+      locale={locale}
+      repos={repos}
+      total={total}
+      githubUser={siteMeta.githubUser}
+    />
+    <Presence locale={locale} />
+  </main>
+  <Footer />
+</Layout>

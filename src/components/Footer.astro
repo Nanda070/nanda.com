@@ -1,5 +1,5 @@
 ---
-import { site } from '../data/site';
+import { siteMeta } from '../data/site';
 
 const year = new Date().getFullYear();
 ---
@@ -9,13 +9,13 @@ const year = new Date().getFullYear();
     class="mx-auto flex max-w-6xl flex-col gap-4 text-sm text-muted sm:flex-row sm:items-center sm:justify-between"
   >
     <p>
-      <span class="font-display font-semibold text-fg">{site.name}</span>
+      <span class="font-display font-semibold text-fg">{siteMeta.name}</span>
       <span class="mx-2 text-border">·</span>
       © {year}
     </p>
     <div class="flex gap-5">
       <a
-        href={`https://github.com/${site.githubUser}`}
+        href={`https://github.com/${siteMeta.githubUser}`}
         target="_blank"
         rel="noopener noreferrer"
         class="link-soft">GitHub</a

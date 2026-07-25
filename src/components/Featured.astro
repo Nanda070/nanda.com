@@ -1,14 +1,22 @@
 ---
+import type { Locale } from '../i18n/ui';
+import { t } from '../i18n/ui';
 import { featuredProjects } from '../data/site';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
 ---
 
 <section id="projects" class="scroll-mt-24 px-4 py-16 sm:px-6 sm:py-20">
   <div class="mx-auto max-w-6xl">
-    <p class="text-sm font-medium tracking-wide text-white/55">Проекты</p>
+    <p class="text-sm font-medium tracking-wide text-white/55">{t(locale, 'projectsEyebrow')}</p>
     <h2 class="mt-3 font-display text-3xl font-bold tracking-tight text-fg sm:text-4xl">
-      Что сделано
+      {t(locale, 'projectsTitle')}
     </h2>
-    <p class="mt-3 max-w-xl text-muted">Основные продукты — отдельно от сырых репозиториев.</p>
+    <p class="mt-3 max-w-xl text-muted">{t(locale, 'projectsLead')}</p>
 
     <ul class="mt-10 divide-y divide-border border-y border-border">
       {
@@ -17,20 +25,14 @@ import { featuredProjects } from '../data/site';
             <div class="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
               <div class="max-w-2xl">
                 <h3 class="font-display text-2xl font-bold text-fg">{project.name}</h3>
-                <p class="mt-3 text-base leading-relaxed text-muted">{project.description}</p>
+                <p class="mt-3 text-base leading-relaxed text-muted">
+                  {project.description[locale]}
+                </p>
                 <p class="mt-4 text-xs tracking-[0.12em] text-muted-strong uppercase">
                   {project.tags.join(' · ')}
                 </p>
               </div>
-              <div class="flex shrink-0 flex-wrap gap-3">
-                <a
-                  href={project.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="btn-primary"
-                >
-                  Открыть
-                </a>
+              <div class="flex shrink-0 flex-wrap gap-3 sm:pr-4">
                 {project.secondaryHref && (
                   <a
                     href={project.secondaryHref}
@@ -38,9 +40,17 @@ import { featuredProjects } from '../data/site';
                     rel="noopener noreferrer"
                     class="btn-ghost !border-border !bg-transparent !text-fg hover:!bg-white/5"
                   >
-                    {project.secondaryLabel ?? 'Ещё'}
+                    {project.secondaryLabel ?? 'Discord'}
                   </a>
                 )}
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn-primary"
+                >
+                  {t(locale, 'open')}
+                </a>
               </div>
             </div>
           </li>

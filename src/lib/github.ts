@@ -56,8 +56,15 @@ export async function getDisplayRepos(options: {
   overrides?: Record<string, string>;
   limit?: number;
   token?: string;
+  fallbackDescription?: string;
 }): Promise<{ repos: DisplayRepo[]; total: number }> {
-  const { username, overrides = {}, limit = 12, token } = options;
+  const {
+    username,
+    overrides = {},
+    limit = 12,
+    token,
+    fallbackDescription = 'Repository on GitHub.',
+  } = options;
   const auth = token ?? process.env.GITHUB_TOKEN ?? process.env.GITHUB_TOKEN_FOR_BUILD;
 
   let raw: GithubRepo[] = [];
@@ -78,7 +85,7 @@ export async function getDisplayRepos(options: {
 
   const mapped: DisplayRepo[] = filtered.map((r) => ({
     name: r.name,
-    description: overrides[r.name] ?? r.description ?? 'Репозиторий на GitHub.',
+    description: overrides[r.name] ?? r.description ?? fallbackDescription,
     url: r.html_url,
     language: r.language,
     stars: r.stargazers_count,

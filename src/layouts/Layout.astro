@@ -1,21 +1,21 @@
 ---
 import '../styles/global.css';
-import { site } from '../data/site';
+import type { Locale } from '../i18n/ui';
+import { defaultLocale } from '../i18n/ui';
 
 interface Props {
-  title?: string;
-  description?: string;
+  locale?: Locale;
+  title: string;
+  description: string;
 }
 
-const {
-  title = `${site.name} — ${site.headline}`,
-  description = `${site.name}. ${site.tagline}`,
-} = Astro.props;
+const { locale = defaultLocale, title, description } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogLocale = locale === 'ru' ? 'ru_RU' : 'en_US';
 ---
 
 <!doctype html>
-<html lang="ru">
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,7 +26,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
-    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:locale" content={ogLocale} />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
@@ -34,7 +34,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Outfit:wght@600;700;800&display=swap"
       rel="stylesheet"
     />
     <title>{title}</title>

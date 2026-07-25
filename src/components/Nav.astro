@@ -1,36 +1,79 @@
 ---
-import { site } from '../data/site';
+import type { Locale } from '../i18n/ui';
+import { t, withBase } from '../i18n/ui';
+import { siteMeta } from '../data/site';
 
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
 const base = import.meta.env.BASE_URL;
+const home = withBase(base, locale);
+const about = withBase(base, locale, '#about');
+const projects = withBase(base, locale, '#projects');
+const links = withBase(base, locale, '#links');
+const enHref = withBase(base, 'en');
+const ruHref = withBase(base, 'ru');
 ---
 
 <header class="absolute inset-x-0 top-0 z-40">
   <nav
-    class="mx-auto flex max-w-6xl items-center justify-between px-4 py-5 sm:px-6"
-    aria-label="Основная навигация"
+    class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-5 sm:px-6"
+    aria-label={t(locale, 'navAria')}
   >
     <a
-      href={`${base}#`}
+      href={home}
       class="font-display text-base font-bold tracking-tight text-white transition-opacity hover:opacity-90"
     >
-      {site.name}
+      {siteMeta.name}
     </a>
-    <ul class="flex items-center gap-1 text-sm sm:gap-2">
-      <li>
+
+    <div class="flex items-center gap-2 sm:gap-3">
+      <ul class="flex items-center gap-0.5 text-sm sm:gap-1">
+        <li>
+          <a href={about} class="link-soft rounded-[10px] px-2.5 py-2 sm:px-3"
+            >{t(locale, 'navAbout')}</a
+          >
+        </li>
+        <li>
+          <a href={projects} class="link-soft rounded-[10px] px-2.5 py-2 sm:px-3"
+            >{t(locale, 'navProjects')}</a
+          >
+        </li>
+        <li>
+          <a href={links} class="link-soft rounded-[10px] px-2.5 py-2 sm:px-3"
+            >{t(locale, 'navLinks')}</a
+          >
+        </li>
+      </ul>
+
+      <div
+        class="flex items-center rounded-[8px] bg-white/10 p-0.5 text-xs font-semibold"
+        role="group"
+        aria-label={t(locale, 'langSwitchAria')}
+      >
         <a
-          href={`${base}#about`}
-          class="link-soft rounded-[10px] px-3 py-2">Обо мне</a
+          href={enHref}
+          class:list={[
+            'rounded-[6px] px-2.5 py-1.5 transition-colors',
+            locale === 'en' ? 'bg-white/25 text-white' : 'text-white/70 hover:text-white',
+          ]}
+          aria-current={locale === 'en' ? 'page' : undefined}
         >
-      </li>
-      <li>
+          EN
+        </a>
         <a
-          href={`${base}#projects`}
-          class="link-soft rounded-[10px] px-3 py-2">Проекты</a
+          href={ruHref}
+          class:list={[
+            'rounded-[6px] px-2.5 py-1.5 transition-colors',
+            locale === 'ru' ? 'bg-white/25 text-white' : 'text-white/70 hover:text-white',
+          ]}
+          aria-current={locale === 'ru' ? 'page' : undefined}
         >
-      </li>
-      <li>
-        <a href={`${base}#links`} class="link-soft rounded-[10px] px-3 py-2">Связь</a>
-      </li>
-    </ul>
+          RU
+        </a>
+      </div>
+    </div>
   </nav>
 </header>
