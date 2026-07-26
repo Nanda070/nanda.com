@@ -54,8 +54,8 @@ export const links: LinkItem[] = [
   {
     id: 'phone',
     label: { en: 'Phone', ru: 'Телефон' },
-    handle: '+41077-259-9608',
-    href: 'tel:+410772599608',
+    handle: '+41-77-259-9608',
+    href: 'tel:+41772599608',
     group: 'contact',
   },
   {
